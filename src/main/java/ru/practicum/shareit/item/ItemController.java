@@ -12,7 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/items")
 public class ItemController {
-    private final String SHARER_ID = "X-Sharer-User-Id";
+    private static final String SHARER_ID = "X-Sharer-User-Id";
     private final ItemService itemService;
 
     @PostMapping
