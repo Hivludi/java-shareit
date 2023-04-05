@@ -13,7 +13,8 @@ import javax.validation.constraints.Positive;
 import java.time.LocalDateTime;
 
 @Builder
-@Getter @Setter
+@Getter
+@Setter
 @AllArgsConstructor
 public class BookingDto {
     @Positive

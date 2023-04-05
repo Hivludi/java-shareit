@@ -4,8 +4,11 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@AllArgsConstructor @NoArgsConstructor
-@Getter @Setter @EqualsAndHashCode
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@EqualsAndHashCode
 @Builder(toBuilder = true)
 @Entity
 @Table(name = "users")

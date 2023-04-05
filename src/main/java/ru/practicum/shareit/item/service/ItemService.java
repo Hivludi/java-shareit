@@ -10,9 +10,14 @@ import java.util.List;
 
 public interface ItemService {
     Item createItem(int id, ItemDto itemDto);
+
     Item updateItem(int id, ItemDto itemDto, int userId);
+
     List<ItemDtoWithBookingsAndComments> findAllItems(int id);
+
     List<Item> getItemsByNameOrDescription(String text, int userId);
+
     ItemDtoWithBookingsAndComments getItemById(int id, int userID);
+
     CommentDto addComment(int userId, int itemId, CommentCreateDto commentCreationDto);
 }

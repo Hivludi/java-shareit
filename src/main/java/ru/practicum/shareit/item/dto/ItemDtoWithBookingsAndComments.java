@@ -14,7 +14,8 @@ import java.util.List;
 
 @Builder
 @AllArgsConstructor
-@Getter @Setter
+@Getter
+@Setter
 public class ItemDtoWithBookingsAndComments {
     private int id;
     @NotBlank(message = "name field cannot be empty")

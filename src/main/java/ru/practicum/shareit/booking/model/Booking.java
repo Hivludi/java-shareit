@@ -8,8 +8,11 @@ import ru.practicum.shareit.user.model.User;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@AllArgsConstructor @NoArgsConstructor
-@Getter @Setter @EqualsAndHashCode
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@EqualsAndHashCode
 @Builder(toBuilder = true)
 @Entity
 @Table(name = "bookings")

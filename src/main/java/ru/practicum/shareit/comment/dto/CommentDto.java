@@ -7,7 +7,8 @@ import javax.validation.constraints.Past;
 import java.time.Instant;
 
 @Builder
-@Getter @Setter
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class CommentDto {

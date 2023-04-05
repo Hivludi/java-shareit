@@ -10,7 +10,8 @@ import javax.validation.constraints.Positive;
 import java.time.LocalDateTime;
 
 @Builder
-@Getter @Setter
+@Getter
+@Setter
 @AllArgsConstructor
 public class BookingForItemDto {
     @Positive
@@ -25,7 +26,8 @@ public class BookingForItemDto {
     private int bookerId;
 
     @AllArgsConstructor
-    @Getter @Setter
+    @Getter
+    @Setter
     public static class Item {
         private int id;
         private String name;

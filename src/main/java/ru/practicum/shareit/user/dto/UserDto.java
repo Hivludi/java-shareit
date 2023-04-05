@@ -6,7 +6,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
 @AllArgsConstructor
-@Getter @Setter
+@Getter
+@Setter
 @Builder(toBuilder = true)
 public class UserDto {
     private int id;
