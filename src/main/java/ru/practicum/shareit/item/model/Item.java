@@ -1,22 +1,27 @@
 package ru.practicum.shareit.item.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 import ru.practicum.shareit.request.model.ItemRequest;
 import ru.practicum.shareit.user.model.User;
 
+import javax.persistence.*;
 
-@Data
-@AllArgsConstructor
-@RequiredArgsConstructor
+
+@AllArgsConstructor @NoArgsConstructor
+@Getter @Setter @EqualsAndHashCode
 @Builder(toBuilder = true)
+@Entity
+@Table(name = "items")
 public class Item {
-    private final int id;
-    private final String name;
-    private final String description;
-    private final Boolean available;
-    private final User owner;
-    private ItemRequest request;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    private String name;
+    private String description;
+    @Column(name = "is_available")
+    private Boolean available;
+    @Column(name = "owner_id")
+    private int owner;
+    @Column(name = "request_id")
+    private int request;
 }

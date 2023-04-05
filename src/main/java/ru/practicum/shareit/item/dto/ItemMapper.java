@@ -6,14 +6,31 @@ import ru.practicum.shareit.user.model.User;
 public final class ItemMapper {
 
     private ItemMapper() {
+    }
 
+    public static Item toItem(ItemDto itemDto) {
+        return Item.builder()
+                .name(itemDto.getName())
+                .description(itemDto.getDescription())
+                .available(itemDto.getAvailable())
+                .build();
     }
 
     public static ItemDto toItemDto(Item item) {
-        return new ItemDto(item.getName(), item.getDescription(), item.getAvailable());
+        return ItemDto.builder()
+                .id(item.getId())
+                .name(item.getName())
+                .description(item.getDescription())
+                .available(item.getAvailable())
+                .build();
     }
 
-    public static Item toItem(int itemId, ItemDto itemDto, User user) {
-        return new Item(itemId, itemDto.getName(), itemDto.getDescription(), itemDto.getAvailable(), user);
+    public static ItemDtoWithBookingsAndComments toItemDtoWithBooking(Item item) {
+        return ItemDtoWithBookingsAndComments.builder()
+                .id(item.getId())
+                .name(item.getName())
+                .description(item.getDescription())
+                .available(item.getAvailable())
+                .build();
     }
 }
