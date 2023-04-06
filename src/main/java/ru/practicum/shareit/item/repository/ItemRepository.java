@@ -12,9 +12,9 @@ public interface ItemRepository extends JpaRepository<Item, Integer> {
 
     List<Item> findByOwner(int ownerId);
 
-    @Query(" select i from Item i" +
-            " where lower(i.name) like (concat('%', ?1, '%'))" +
-            " or lower(i.description) like (concat('%', ?1, '%'))" +
-            " and i.available = true")
+    @Query("SELECT i FROM Item i" +
+            " WHERE LOWER(i.name) LIKE (CONCAT('%', ?1, '%'))" +
+            " OR LOWER(i.description) LIKE (CONCAT('%', ?1, '%'))" +
+            " AND i.available = TRUE")
     List<Item> findAvailableItemsByNameOrDescription(String text);
 }

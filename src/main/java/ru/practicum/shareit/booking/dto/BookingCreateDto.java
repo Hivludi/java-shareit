@@ -1,8 +1,6 @@
 package ru.practicum.shareit.booking.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import ru.practicum.shareit.validation.DateValidator;
 
 import javax.validation.constraints.Future;
@@ -12,9 +10,9 @@ import javax.validation.constraints.Positive;
 import java.time.LocalDateTime;
 
 @DateValidator
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
+@Builder(toBuilder = true)
 public class BookingCreateDto {
     @Positive
     @NotNull

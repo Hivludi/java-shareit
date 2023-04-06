@@ -1,5 +1,7 @@
 package ru.practicum.shareit.booking.dto;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import ru.practicum.shareit.booking.model.Booking;
 import ru.practicum.shareit.item.dto.ItemMapper;
 import ru.practicum.shareit.item.model.Item;
@@ -9,10 +11,10 @@ import ru.practicum.shareit.user.model.User;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class BookingMapper {
 
     public static Booking toBooking(BookingCreateDto bookingCreateDto, Item item, User user) {
-
         return Booking.builder()
                 .start(bookingCreateDto.getStart())
                 .end(bookingCreateDto.getEnd())
@@ -47,5 +49,4 @@ public final class BookingMapper {
                 .bookerId(booking.getBooker().getId())
                 .build();
     }
-
 }

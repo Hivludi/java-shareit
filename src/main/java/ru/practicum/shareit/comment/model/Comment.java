@@ -7,11 +7,9 @@ import ru.practicum.shareit.user.model.User;
 import javax.persistence.*;
 import java.time.Instant;
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
-@EqualsAndHashCode
 @Builder(toBuilder = true)
 @Entity
 @Table(name = "comments")

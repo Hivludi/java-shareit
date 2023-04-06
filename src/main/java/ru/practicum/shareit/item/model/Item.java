@@ -5,11 +5,9 @@ import lombok.*;
 import javax.persistence.*;
 
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
-@EqualsAndHashCode
 @Builder(toBuilder = true)
 @Entity
 @Table(name = "items")

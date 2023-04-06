@@ -6,11 +6,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Past;
 import java.time.Instant;
 
-@Builder
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
-@NoArgsConstructor
+@Builder(toBuilder = true)
 public class CommentDto {
     private int id;
     @NotBlank
