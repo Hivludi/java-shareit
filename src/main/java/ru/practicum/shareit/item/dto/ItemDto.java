@@ -11,11 +11,12 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @Builder(toBuilder = true)
 public class ItemDto {
+    private int id;
     @NotNull
     @NotBlank
-    private final String name;
+    private String name;
     @NotNull
-    private final String description;
+    private String description;
     @NotNull
-    private final Boolean available;
+    private Boolean available;
 }

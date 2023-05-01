@@ -35,6 +35,13 @@ public class ErrorHandler {
         return new ErrorResponse(String.format("Ошибка с полем \"%s\": %s", e.getParameter(), e.getMessage()));
     }
 
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorResponse handleBookingException(final BookingException e) {
+        log.warn("Ошибка: {}", e.getMessage());
+        return new ErrorResponse(String.format("%s", e.getMessage()));
+    }
+
     //Обработка ошибок поиска объектов
     @ExceptionHandler()
     @ResponseStatus(HttpStatus.NOT_FOUND)
