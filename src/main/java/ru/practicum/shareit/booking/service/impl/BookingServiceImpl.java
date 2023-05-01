@@ -105,6 +105,10 @@ public class BookingServiceImpl implements BookingService {
                 bookings = bookingRepository.findAllRejected(user.getId());
                 break;
         }
+        if (bookingState.equals(State.CURRENT)) return bookings.stream()
+                .map(BookingMapper::toBookingDto)
+                .sorted(Comparator.comparing(BookingDto::getId))
+                .collect(Collectors.toList());
         return bookings.stream()
                 .map(BookingMapper::toBookingDto)
                 .collect(Collectors.toList());

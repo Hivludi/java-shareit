@@ -204,6 +204,14 @@ public class ItemServiceImpl implements ItemService {
         BookingInfoDto nextBookingDto = getNextItemBooking(itemDto.getId());
         itemDto.setLastBooking(lastBookingDto);
         itemDto.setNextBooking(nextBookingDto);
+        if (lastBookingDto == null) {
+            itemDto.setLastBooking(bookingRepository.
+                    findFirstOwnersApproved(itemDto.getOwner())
+                    .stream()
+                    .findFirst()
+                    .map(BookingMapper::toBookingInfoDto)
+                    .orElse(null));
+        }
         return itemDto;
     }
 
