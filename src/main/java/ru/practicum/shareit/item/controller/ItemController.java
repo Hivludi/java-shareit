@@ -22,10 +22,11 @@ import java.util.List;
 public class ItemController {
 
     private final ItemService itemService;
+    private final String xSharerUserId = "X-Sharer-User-Id";
 
     @PostMapping
     public ItemDto addNewItem(@Valid @RequestBody @NotNull ItemDto itemDto,
-                              @RequestHeader("X-Sharer-User-Id") Long ownerId) {
+                              @RequestHeader(xSharerUserId) Long ownerId) {
         itemDto.setOwner(ownerId);
         log.info("save new item = {}", itemDto);
         return itemService.addNewItem(itemDto);
@@ -34,7 +35,7 @@ public class ItemController {
     @PatchMapping("/{id}")
     public ItemDto updateItem(@PathVariable("id") Long id,
                               @RequestBody @NotNull ItemDto itemDto,
-                              @RequestHeader("X-Sharer-User-Id") Long ownerId) {
+                              @RequestHeader(xSharerUserId) Long ownerId) {
         itemDto.setId(id);
         itemDto.setOwner(ownerId);
         log.info("update item = {}", itemDto);
@@ -43,14 +44,14 @@ public class ItemController {
 
     @GetMapping("/{id}")
     public ItemDto getItem(@PathVariable("id") Long id,
-                           @RequestHeader("X-Sharer-User-Id") Long userId) {
+                           @RequestHeader(xSharerUserId) Long userId) {
         log.info("get item with id = {} from user with id = {}", id, userId);
         return itemService.getItem(id, userId);
     }
 
     @GetMapping
     public List<ItemDto> getItemsByOwner(
-            @RequestHeader("X-Sharer-User-Id") Long ownerId,
+            @RequestHeader(xSharerUserId) Long ownerId,
             @RequestParam(name = "from", required = false, defaultValue = "0") @Min(value = 0) Long from,
             @RequestParam(name = "size", required = false, defaultValue = "10") @Min(value = 1) Integer size
     ) {
@@ -70,7 +71,7 @@ public class ItemController {
 
     @PostMapping("/{id}/comment")
     public CommentDto addComment(@PathVariable("id") Long id,
-                                 @RequestHeader("X-Sharer-User-Id") Long authorId,
+                                 @RequestHeader(xSharerUserId) Long authorId,
                                  @Valid @RequestBody @NotNull CommentDto commentDto) {
         commentDto.setCreated(LocalDateTime.now());
         return itemService.addComment(id, authorId, commentDto);
