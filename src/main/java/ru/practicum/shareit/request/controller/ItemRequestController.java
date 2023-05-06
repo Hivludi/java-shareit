@@ -1,12 +1,52 @@
 package ru.practicum.shareit.request.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+import ru.practicum.shareit.request.service.ItemRequestService;
+import ru.practicum.shareit.request.dto.ItemRequestDto;
 
-/**
- * TODO Sprint add-item-requests.
- */
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import java.util.List;
+
 @RestController
+@RequiredArgsConstructor
 @RequestMapping(path = "/requests")
+@Validated
+@Slf4j
 public class ItemRequestController {
+    private final ItemRequestService itemRequestService;
+    private final String xSharerUserId = "X-Sharer-User-Id";
+
+    @PostMapping
+    public ItemRequestDto createNewRequest(@Valid @RequestBody @NotNull ItemRequestDto itemRequestDto,
+                                           @RequestHeader(xSharerUserId) Long requestorId) {
+        log.info("create new item request = {} by user with id = {}", itemRequestDto, requestorId);
+        return itemRequestService.createNewRequest(itemRequestDto, requestorId);
+    }
+
+    @GetMapping
+    public List<ItemRequestDto> getUsersRequests(@RequestHeader(xSharerUserId) Long requestorId) {
+        log.info("get all requests of user with id = {}", requestorId);
+        return itemRequestService.getUsersRequests(requestorId);
+    }
+
+    @GetMapping("/all")
+    public List<ItemRequestDto> getAllRequestsPageable(
+            @RequestHeader(xSharerUserId) Long userId,
+            @RequestParam(name = "from", required = false, defaultValue = "0") @Min(value = 0) Long from,
+            @RequestParam(name = "size", required = false, defaultValue = "10") @Min(value = 1) Integer size) {
+        log.info("get all requests from id = {} page size = {}", from, size);
+        return itemRequestService.getAllRequestsPageable(userId, from, size);
+    }
+
+    @GetMapping("/{requestId}")
+    public ItemRequestDto getRequestById(@RequestHeader(xSharerUserId) Long requestorId,
+                                         @PathVariable("requestId") Long requestId) {
+        log.info("get request with id = {}", requestId);
+        return itemRequestService.getRequestById(requestId, requestorId);
+    }
 }
