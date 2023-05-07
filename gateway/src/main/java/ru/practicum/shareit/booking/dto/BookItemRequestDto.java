@@ -18,10 +18,10 @@ import ru.practicum.shareit.util.validator.StartAndEndValid;
 @AllArgsConstructor
 @StartAndEndValid
 public class BookItemRequestDto {
-	@NotNull
-	private Long itemId;
-	@FutureOrPresent
-	private LocalDateTime start;
-	@Future
-	private LocalDateTime end;
+    @NotNull
+    private Long itemId;
+    @FutureOrPresent
+    private LocalDateTime start;
+    @Future
+    private LocalDateTime end;
 }
